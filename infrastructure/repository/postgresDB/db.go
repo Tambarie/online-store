@@ -25,6 +25,10 @@ func Init() *gorm.DB {
 		log.Fatal(err)
 	}
 
+	err = db.AutoMigrate(domain.Basket{})
+	if err != nil {
+		panic(err)
+	}
 	err = db.AutoMigrate(domain.Products{})
 	if err != nil {
 		panic(err)
