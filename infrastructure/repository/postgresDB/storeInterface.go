@@ -10,4 +10,5 @@ type StoreRepository interface {
 	FilterProductsByProperties(price float64, name, status string) ([]domain.Products, error)
 	ListAllProducts() ([]domain.Products, error)
 	AddProductToBasket(basket *domain.Basket) (*domain.Basket, error)
+	GetSummaryOfProducts(basketID string) ([]domain.Basket, error)
 }
