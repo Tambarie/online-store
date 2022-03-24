@@ -1,7 +1,7 @@
 package domain
 
 type Basket struct {
-	Model
-	ProductID string  `json:"id"`
+	UserID    string  `json:"user_id"`
+	ProductID string  `json:"product_id"`
 	Price     float64 `json:"price"`
 }
