@@ -24,6 +24,7 @@ func (h *Handler) DeleteProduct() gin.HandlerFunc {
 
 		err := h.StoreService.DeleteProduct(product.ProductID, production)
 		if err != nil {
+			context.AbortWithStatusJSON(500, err)
 			return
 		}
 
