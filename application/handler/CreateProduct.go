@@ -27,6 +27,7 @@ func (h *Handler) CreateProduct() gin.HandlerFunc {
 
 		productDB, err := h.StoreService.CreateProduct(product)
 		if err != nil {
+			context.AbortWithStatusJSON(500, err)
 			return
 		}
 		response.JSON(context, http.StatusCreated, productDB.ProductID, nil, "product created successfully")
