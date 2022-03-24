@@ -67,6 +67,7 @@ func (d *RepositoryDB) DeleteProduct(productID string, products *domain.Products
 }
 
 func (d *RepositoryDB) FilterProductsByProperties(price float64, name, status string) ([]domain.Products, error) {
+	helpers.LogEvent("INFO", fmt.Sprintf("Filter product by product properties : %v %v %v ...", name, price, status))
 	var products []domain.Products
 	if err := d.db.Where("price = ?", price).Or("name = ?", name).Or("status = ?", status).Find(&products).Error; err != nil {
 		return nil, err
@@ -75,6 +76,7 @@ func (d *RepositoryDB) FilterProductsByProperties(price float64, name, status st
 }
 
 func (d *RepositoryDB) ListAllProducts() ([]domain.Products, error) {
+	helpers.LogEvent("INFO", fmt.Sprintf("Listing all product by products "))
 	var products []domain.Products
 	if err := d.db.Find(&products).Error; err != nil {
 		return nil, err
@@ -82,3 +84,13 @@ func (d *RepositoryDB) ListAllProducts() ([]domain.Products, error) {
 	return products, nil
 }
 
+func (d *RepositoryDB) AddProductToBasket(basket *domain.Basket) (*domain.Basket, error) {
+	helpers.LogEvent("INFO", fmt.Sprintf("Adding  product to basket %v ...", basket))
+	err := d.db.Create(&basket).Error
+	log.Println("product created")
+	if err != nil {
+		return nil, err
+	}
+	log.Println("COMMENT HERE", basket)
+	return basket, nil
+}
