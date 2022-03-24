@@ -13,6 +13,7 @@ type StoreService interface {
 	FilterProductsByProperties(price float64, name, status string) ([]domain.Products, error)
 	ListAllProducts() ([]domain.Products, error)
 	AddProductToBasket(basket *domain.Basket) (*domain.Basket, error)
+	GetSummaryOfProducts(basketID string) ([]domain.Basket, error)
 }
 
 type DefaultAccountService struct {
@@ -33,7 +34,7 @@ func (s *DefaultAccountService) GetProductDetails(reference string) (*domain.Pro
 	return s.repo.GetProductDetails(reference)
 }
 
-func (s DefaultAccountService) UpdateProducts(reference string, products *domain.Products) error {
+func (s *DefaultAccountService) UpdateProducts(reference string, products *domain.Products) error {
 	return s.repo.UpdateProduct(reference, products)
 }
 
@@ -49,6 +50,10 @@ func (s *DefaultAccountService) ListAllProducts() ([]domain.Products, error) {
 	return s.repo.ListAllProducts()
 }
 
-func (s *DefaultAccountService) AddProductToBasket(basket *domain.Basket) (*domain.Basket, error)  {
+func (s *DefaultAccountService) AddProductToBasket(basket *domain.Basket) (*domain.Basket, error) {
 	return s.repo.AddProductToBasket(basket)
+}
+
+func (s *DefaultAccountService) GetSummaryOfProducts(basketID string) ([]domain.Basket, error) {
+	return s.repo.GetSummaryOfProducts(basketID)
 }
