@@ -49,7 +49,7 @@ func (d *RepositoryDB) UpdateProduct(productID string, products *domain.Products
 			Updates(
 				domain.Products{
 					Model:       domain.Model{},
-					ProductID:   products.ID,
+					ProductID:   products.ProductID,
 					Name:        products.Name,
 					Description: products.Description,
 					Price:       products.Price,
@@ -92,5 +92,14 @@ func (d *RepositoryDB) AddProductToBasket(basket *domain.Basket) (*domain.Basket
 		return nil, err
 	}
 	log.Println("COMMENT HERE", basket)
+	return basket, nil
+}
+
+func (d *RepositoryDB) GetSummaryOfProducts(basketID string) ([]domain.Basket, error) {
+	helpers.LogEvent("INFO", fmt.Sprintf("Getting the summary of products in basket with basketId %v ", basketID))
+	var basket []domain.Basket
+	if err := d.db.Where("user_id = ?", basketID).Find(&basket).Error; err != nil {
+		return nil, err
+	}
 	return basket, nil
 }
