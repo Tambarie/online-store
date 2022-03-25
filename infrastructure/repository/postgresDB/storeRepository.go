@@ -36,7 +36,7 @@ func (d *RepositoryDB) CreateProduct(product *domain.Products) (*domain.Products
 func (d *RepositoryDB) GetProductDetails(productID string) (*domain.Products, error) {
 	helpers.LogEvent("INFO", fmt.Sprintf("Getting products by productID : %v ...", productID))
 	var product domain.Products
-	err := d.db.Where("productID = ?", productID).Find(&product).Error
+	err := d.db.Where("product_id = ?", productID).Find(&product).Error
 	if err != nil {
 		return nil, err
 	}

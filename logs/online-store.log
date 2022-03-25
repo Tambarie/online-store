@@ -26,3 +26,6 @@
 2022/03/25 19:36:03 server.go:34: Server Started at Port:9090
 2022/03/25 19:36:06 server.go:46: Shutting down the server...
 2022/03/25 19:36:08 server.go:57: Server exits successfully
+2022/03/25 21:06:28 db.go:26: failed to connect to `host=port=5432 user=decagon database=online-store`: hostname resolving error (lookup port=5432: no such host)
+2022/03/25 21:06:33 db.go:26: failed to connect to `host=port=5432 user=decagon database=online-store`: hostname resolving error (lookup port=5432: no such host)
+2022/03/25 21:06:37 db.go:26: failed to connect to `host=port=5432 user=decagon database=online-store`: hostname resolving error (lookup port=5432: no such host)
