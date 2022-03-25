@@ -1,4 +1,4 @@
-mock_*
+product_mock*
 .vscode
 .idea
 *.env
