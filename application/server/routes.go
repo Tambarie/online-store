@@ -55,5 +55,4 @@ func DefineRouter(router *gin.Engine, handler *handler.Handler) {
 	apiRouter.GET("/filter-products", handler.FilterProducts())
 	apiRouter.POST("/add-products-basket", handler.AddProductToBasket())
 	apiRouter.GET("/get-summary", handler.GetSummaryInBasket())
-
 }
