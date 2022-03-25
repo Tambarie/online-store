@@ -14,7 +14,7 @@ To use this API, clone this repository and follow one of two methods shown below
 ### Using Docker Compose
 
 1. [Install Docker Compose](https://docs.docker.com/compose/install/)
-2. [PullPostgres Image](https://hub.docker.com/_/postgres)
+2. [Pull Postgres Image](https://hub.docker.com/_/postgres)
 3. Run your containers
 
 
@@ -71,7 +71,7 @@ The command above helps to generate mock interfaces from a source file.
 
 To run tests, run:
 ```
-go test
+Go the application/test folder. 
 ```
 
 ## Author
