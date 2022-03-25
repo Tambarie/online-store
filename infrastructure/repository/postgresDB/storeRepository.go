@@ -20,6 +20,7 @@ func NewPaymentGatewayRepositoryDB(client *gorm.DB) *RepositoryDB {
 	}
 }
 
+// CreateProduct Saves the product to the database
 func (d *RepositoryDB) CreateProduct(product *domain.Products) (*domain.Products, error) {
 	helpers.LogEvent("INFO", fmt.Sprintf("Creating products : %v ...", product))
 	err := d.db.Create(&product).Error
@@ -31,16 +32,18 @@ func (d *RepositoryDB) CreateProduct(product *domain.Products) (*domain.Products
 	return product, nil
 }
 
-func (d *RepositoryDB) GetProductDetails(reference string) (*domain.Products, error) {
-	helpers.LogEvent("INFO", fmt.Sprintf("Getting products by reference : %v ...", reference))
+// GetProductDetails Gets product by the ID
+func (d *RepositoryDB) GetProductDetails(productID string) (*domain.Products, error) {
+	helpers.LogEvent("INFO", fmt.Sprintf("Getting products by productID : %v ...", productID))
 	var product domain.Products
-	err := d.db.Where("product_id = ?", reference).Find(&product).Error
+	err := d.db.Where("productID = ?", productID).Find(&product).Error
 	if err != nil {
 		return nil, err
 	}
 	return &product, nil
 }
 
+// UpdateProduct Update the product in the database
 func (d *RepositoryDB) UpdateProduct(productID string, products *domain.Products) error {
 	helpers.LogEvent("INFO", fmt.Sprintf("Updating products by reference : %v ...", productID))
 	result :=
@@ -60,12 +63,14 @@ func (d *RepositoryDB) UpdateProduct(productID string, products *domain.Products
 	return result.Error
 }
 
+// DeleteProduct Delete the product in the database
 func (d *RepositoryDB) DeleteProduct(productID string, products *domain.Products) error {
 	helpers.LogEvent("INFO", fmt.Sprintf("Deleting product by product_id : %v ...", productID))
 	result := d.db.Where("product_id = ? ", productID).Delete(&products)
 	return result.Error
 }
 
+// FilterProductsByProperties filters the product by it's properties
 func (d *RepositoryDB) FilterProductsByProperties(price float64, name, status string) ([]domain.Products, error) {
 	helpers.LogEvent("INFO", fmt.Sprintf("Filter product by product properties : %v %v %v ...", name, price, status))
 	var products []domain.Products
@@ -75,6 +80,7 @@ func (d *RepositoryDB) FilterProductsByProperties(price float64, name, status st
 	return products, nil
 }
 
+// ListAllProducts List all the products
 func (d *RepositoryDB) ListAllProducts() ([]domain.Products, error) {
 	helpers.LogEvent("INFO", fmt.Sprintf("Listing all product by products "))
 	var products []domain.Products
@@ -84,6 +90,7 @@ func (d *RepositoryDB) ListAllProducts() ([]domain.Products, error) {
 	return products, nil
 }
 
+// AddProductToBasket Adds product to the basket
 func (d *RepositoryDB) AddProductToBasket(basket *domain.Basket) (*domain.Basket, error) {
 	helpers.LogEvent("INFO", fmt.Sprintf("Adding  product to basket %v ...", basket))
 	err := d.db.Create(&basket).Error
@@ -95,6 +102,7 @@ func (d *RepositoryDB) AddProductToBasket(basket *domain.Basket) (*domain.Basket
 	return basket, nil
 }
 
+// GetSummaryOfProducts Gets the summary of the product
 func (d *RepositoryDB) GetSummaryOfProducts(basketID string) ([]domain.Basket, error) {
 	helpers.LogEvent("INFO", fmt.Sprintf("Getting the summary of products in basket with basketId %v ", basketID))
 	var basket []domain.Basket
