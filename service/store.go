@@ -5,6 +5,7 @@ import (
 	"github.com/Tambarie/online-store/infrastructure/repository/postgresDB"
 )
 
+// StoreService Method Signature
 type StoreService interface {
 	CreateProduct(product *domain.Products) (*domain.Products, error)
 	GetProductDetails(reference string) (*domain.Products, error)
@@ -20,6 +21,7 @@ type DefaultAccountService struct {
 	repo postgresDB.StoreRepository
 }
 
+// NewStoreService Initializing *DefaultAccountService struct
 func NewStoreService(repo postgresDB.StoreRepository) *DefaultAccountService {
 	return &DefaultAccountService{
 		repo: repo,
