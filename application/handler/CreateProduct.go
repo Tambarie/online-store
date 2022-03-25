@@ -20,16 +20,19 @@ func (h *Handler) CreateProduct() gin.HandlerFunc {
 		product.ProductID = uuid.New().String()
 		product.Status = domain.INSTOCK
 
+		// Binding the json
 		if err := helpers.Decode(context, &product); err != nil {
 			log.Fatalf("Error %v", err)
 			return
 		}
 
+		// Creates a product
 		productDB, err := h.StoreService.CreateProduct(product)
 		if err != nil {
 			context.AbortWithStatusJSON(500, err)
 			return
 		}
+		// JSON Response to the client
 		response.JSON(context, http.StatusCreated, productDB.ProductID, nil, "product created successfully")
 	}
 }
