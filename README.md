@@ -64,7 +64,7 @@ go get github.com/golang/mock/mockgen
 
 After installing the packages, run:
 ```
-make mock-service
+make mock-product
 ```
 
 The command above helps to generate mock interfaces from a source file.
