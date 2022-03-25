@@ -2,6 +2,7 @@ package postgresDB
 
 import (
 	"fmt"
+	"github.com/Tambarie/online-store/application/helpers"
 	domain "github.com/Tambarie/online-store/domain/store"
 	_ "github.com/lib/pq"
 	"gorm.io/driver/postgres"
@@ -10,6 +11,7 @@ import (
 	"os"
 )
 
+// Init Connecting to Postgres Database using Gorrm package
 func Init() *gorm.DB {
 	var dsn string
 	dsn = os.Getenv("DATABASE_URL")
@@ -24,15 +26,18 @@ func Init() *gorm.DB {
 		log.Fatal(err)
 	}
 
+	// Creates the Basket Table in the DB
 	err = db.AutoMigrate(domain.Basket{})
 	if err != nil {
 		panic(err)
 	}
+
+	// Creates the Basket Products in the DB
 	err = db.AutoMigrate(domain.Products{})
 	if err != nil {
 		panic(err)
 	}
 
-	log.Println("Database Connected Successfully...")
+	helpers.LogEvent("INFO", fmt.Sprintf("Database Connected Successfully..."))
 	return db
 }
