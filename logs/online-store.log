@@ -22,3 +22,7 @@
 2022/03/25 18:48:23 server.go:34: Server Started at Port:9090
 2022/03/25 19:16:35 logs.go:93: {"time_stamp":"2022-03-25T19:16:35+01:00","level":"INFO","message":"Database Connected Successfully..."}
 2022/03/25 19:16:35 server.go:34: Server Started at Port:9090
+2022/03/25 19:36:03 logs.go:93: {"time_stamp":"2022-03-25T19:36:03+01:00","level":"INFO","message":"Database Connected Successfully..."}
+2022/03/25 19:36:03 server.go:34: Server Started at Port:9090
+2022/03/25 19:36:06 server.go:46: Shutting down the server...
+2022/03/25 19:36:08 server.go:57: Server exits successfully
