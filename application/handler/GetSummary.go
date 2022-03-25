@@ -29,8 +29,9 @@ func (h *Handler) GetSummaryInBasket() gin.HandlerFunc {
 			totalPrice += basket.Price
 		}
 		response.JSON(context, http.StatusOK, gin.H{
-			"count": len(basketDB),
-			"price": totalPrice,
+			"Total count":     len(basketDB),
+			"Total price":     totalPrice,
+			"created_baskets": basketDB,
 		}, nil, "")
 	}
 }
